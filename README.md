@@ -51,6 +51,13 @@ Pfsense으로 적용한 프로토콜
 
 # Ansible 자동화 구성
 
+Ansible은 Playbook을 실행하여 여러 Role을 순차적으로 호출하고, 각 Role이 담당하는 서버 구성을 자동으로 수행하는 구조로 구성되어 있습니다.
+
+**Ansible 동작 과정**
+
+`ansible-playbook` 실행 → **site.yml**이 전체 작업 시작 → **Playbook**이 **Role** 호출 → **Role**의 **Task(main.yml)** 실행 → 서버 구성 및 서비스 자동 구축 완료
+
+
 ```
 ansible-infra/
 │
@@ -86,6 +93,8 @@ ansible-infra/
         ├── Worker Node Join
         └── Cluster 환경 구축
 ```
+
+
 
 # CI/CD Pipeline
 (GitLab Pipeline 이미지)
