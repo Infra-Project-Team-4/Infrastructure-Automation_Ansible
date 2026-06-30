@@ -128,7 +128,8 @@ DB는 사전에 구성해서 제외합니다.
 **roles 코드 예시**
 ```
 # roles/kubernetes/tasks/main.yml
-
+Kubernetes Role의 main.yml은 설치 작업을 먼저 수행한 후,
+Inventory 그룹 정보를 기준으로 Master Node와 Worker Node 작업을 분리하여 실행합니다.
 ---
 # Kubernetes 설치 작업 실행
 - import_tasks: install.yml
