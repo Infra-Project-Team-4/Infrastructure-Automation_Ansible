@@ -1,5 +1,5 @@
 ---
-# ===== 1. kubeadm/kubelet/kubectl 설치 (마스터와 동일 절차) =====
+# 1. kubeadm/kubelet/kubectl 설치 (마스터와 동일 절차) 
 - name: Kubernetes apt 키링 디렉토리 생성
   file:
     path: /etc/apt/keyrings
@@ -38,7 +38,7 @@
     name: kubelet
     enabled: true
 
-# ===== 2. 기존 클러스터 잔재 초기화 (클론 VM 대비, 워커도 동일하게 필요) =====
+# 2. 기존 클러스터 잔재 초기화 (클론 VM 대비, 워커도 동일하게 필요)
 - name: 기존 kubelet 설정 확인
   stat:
     path: /etc/kubernetes/kubelet.conf
@@ -62,7 +62,7 @@
   when: existing_worker_config.stat.exists
   changed_when: true
 
-# ===== 3. 마스터에서 생성한 join 명령어로 클러스터 합류 =====
+# 3. 마스터에서 생성한 join 명령어로 클러스터 합류
 - name: control node에 저장된 join 명령어 읽기
   local_action: slurp src=/tmp/k8s_join_command.sh
   become: false
