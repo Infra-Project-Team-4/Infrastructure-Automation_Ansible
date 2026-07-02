@@ -1,5 +1,5 @@
 ---
-# ===== 1. kubeadm/kubelet/kubectl 설치 =====
+# 1. kubeadm/kubelet/kubectl 설치
 - name: Kubernetes apt 키링 디렉토리 생성
   file:
     path: /etc/apt/keyrings
@@ -38,7 +38,7 @@
     name: kubelet
     enabled: true
 
-# ===== 2. 기존 클러스터 잔재 초기화 (클론 VM 대비) =====
+# 2. 기존 클러스터 잔재 초기화 (클론 VM 대비) 
 - name: 기존 kubeadm 클러스터 흔적 확인
   stat:
     path: /etc/kubernetes/admin.conf
@@ -68,7 +68,7 @@
   when: existing_cluster.stat.exists
   changed_when: true
 
-# ===== 3. kubeadm init (새 IP 120 기준으로 클러스터 생성) =====
+# 3. kubeadm init (새 IP 120 기준으로 클러스터 생성) 
 - name: kubeadm init 실행
   command: >
     kubeadm init
@@ -84,7 +84,7 @@
     dest: /root/kubeadm-init-output.txt
   when: kubeadm_init_result.stdout is defined
 
-# ===== 4. kubeconfig 설정 (ansible_user 계정용) =====
+# 4. kubeconfig 설정 (ansible_user 계정용) 
 - name: .kube 디렉토리 생성
   file:
     path: "/home/{{ ansible_user }}/.kube"
@@ -102,7 +102,7 @@
     group: "{{ ansible_user }}"
     mode: '0600'
 
-# ===== 5. Calico CNI 설치 =====
+# 5. Calico CNI 설치 
 - name: Calico manifest 다운로드 및 적용
   become_user: "{{ ansible_user }}"
   environment:
@@ -110,7 +110,7 @@
   command: kubectl apply -f {{ calico_manifest_url }}
   changed_when: true
 
-# ===== 6. worker join 명령어를 control node로 가져오기 (다음 단계에서 워커가 사용) =====
+# 6. worker join 명령어를 control node로 가져오기 (다음 단계에서 워커가 사용) 
 - name: join 명령어 생성
   become_user: "{{ ansible_user }}"
   environment:
@@ -127,7 +127,7 @@
   local_action: copy content="{{ join_command_result.stdout }}" dest="/tmp/k8s_join_command.sh"
   become: false
 
-# ===== 7. Harbor 자체서명 인증서를 마스터 노드도 신뢰하도록 등록 (이미지 pull용) =====
+# 7. Harbor 자체서명 인증서를 마스터 노드도 신뢰하도록 등록 (이미지 pull용) 
 - name: Harbor CA 인증서 가져오기 디렉토리 생성
   file:
     path: /usr/local/share/ca-certificates/harbor
