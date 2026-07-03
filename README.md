@@ -97,7 +97,7 @@ ansible-infra/
 │   └── site.yml           
 │
 └── roles/                     
-    ├── common/                
+    ├── common/ -> Kubernetes 클러스터 구성을 위해 모든 노드에 공통 적용                
     ├── database/              
     ├── harbor/                
     ├── k8s-master/            
