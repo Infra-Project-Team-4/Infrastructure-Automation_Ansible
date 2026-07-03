@@ -106,18 +106,21 @@ ansible-infra/
     └── gitlab-runner/
 
 ```
+<br>
+**inbentory**
 
-**inbentory & group_vars**
+<br>
+
 Ansible이 작업을 실행할 서버들의 주소/그룹을 host.ini 파일에 정리해 두었다.
-
 management 그룹에는 GitLab과 GitLab Runner를,
-
 Kubernetes 클러스터는 master와 worker 그룹으로 분리하여 구성하였으며, 
-
 database 및 k8s_cluster 그룹을 통해 전체 인프라를 계층적으로 관리할 수 있도록 설계하였다. 
-
 또한 all:vars를 통해 SSH 키, Python 인터프리터 경로, SSH 옵션 등 모든 호스트에 공통으로 적용되는 전역 설정을 정의하였다.
 
+<br>
+**group_vars**
+
+<br>
 group_vars는 특정 서버 그룹에 적용되는 공통 변수(환경 설정값)를 정의하는 영역이다.
 이를 통해 IP 주소나 환경이 변경되더라도 inventory와 변수만 수정하면 동일한 자동화 구성을 재사용할 수 있다.
 파일에는 Kubernetes 클러스터(Master 1, Worker 2)와 Harbor, GitLab 환경 구성을 위한 변수 정의, IP 주소, 버전 정보, 
