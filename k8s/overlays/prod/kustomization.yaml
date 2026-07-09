@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+  - ../../config
+  - ../../registry
+  - ../../external
+  - ../../apps/auth-service
+  - ../../apps/frontend
+  - ../../apps/nginx-lb
+  - ../../apps/product-service
+  - ../../apps/scan-stock-service
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wms-config
+  namespace: wms
+data:
+  DB_HOST: "postgres-service"
+  DB_PORT: "5432"
+  KAFKA_BROKER: "kafka-service:9092"
+  REDIS_HOST: "redis-service"

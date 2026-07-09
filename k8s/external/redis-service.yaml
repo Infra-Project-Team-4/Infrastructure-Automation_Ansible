@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  namespace: wms
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: redis-service
+  namespace: wms
+subsets:
+  - addresses:
+      - ip: 172.16.0.1   # TODO: 임시값(pfSense 게이트웨이). Redis VM 구성 후 실제 IP로 교체 필요
+    ports:
+      - port: 6379

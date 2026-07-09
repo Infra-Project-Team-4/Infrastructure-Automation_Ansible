@@ -22,7 +22,7 @@
     - gitlab-runner
 
 
-- name: Harbor 서버 구성 (192.168.159.122)
+- name: Harbor 서버 구성 (172.16.20.11)
   hosts: harbor
   become: true
   roles:
@@ -36,14 +36,14 @@
     - common
 
 
-- name: K8s 마스터 노드 구성 (192.168.159.120)
+- name: K8s 마스터 노드 구성 (172.16.30.129)
   hosts: master
   become: true
   roles:
     - k8s-master
 
 
-- name: K8s 워커 노드 구성 및 클러스터 join (192.168.159.121)
+- name: K8s 워커 노드 구성 및 클러스터 join (172.16.30.130)
   hosts: worker
   become: true
   roles:
