@@ -1,0 +1,593 @@
+body {
+    margin: 0;
+    background: #e9eef5;
+    font-family: Arial, sans-serif;
+    color: #111827;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: #1e293b;
+    color: white;
+    padding: 24px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+}
+
+.brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.brand p {
+    margin: 4px 0 0;
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #e5e7eb;
+}
+
+.menu li:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.sidebar-user {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid #334155;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e9eef5;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.sidebar-user p {
+    margin: 4px 0 0;
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.content {
+    flex: 1;
+    padding: 34px;
+    box-sizing: border-box;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.top-header h1 {
+    margin: 0;
+}
+
+.top-header p {
+    margin: 6px 0 0;
+    color: #64748b;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn,
+.logout-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 11px 14px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.icon-btn {
+    background: white;
+}
+
+.logout-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.notify-btn {
+    position: relative;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 14px;
+
+    background: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+
+    transition: all .2s ease;
+}
+
+.notify-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,.12);
+}
+
+.user-info {
+    background: white;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: #334155;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.toast{
+    position: fixed;
+
+    top: 30px;
+    right: 30px;
+
+    min-width: 320px;
+
+    padding: 24px 30px;
+
+    border-radius: 18px;
+
+    background: #16a34a;
+
+    color: white;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+
+    opacity:0;
+    transform:translateY(-20px);
+    transition:.3s;
+
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 22px;
+    height: 22px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.notification-panel {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 48px;
+    width: 420px;
+    padding: 18px;
+    background: white;
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    z-index: 9998;
+}
+
+.notification-panel.show {
+    display: block;
+}
+
+.notification-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.notification-item {
+    padding: 16px;
+    border-radius: 14px;
+    background: #f8fafc;
+    margin-bottom: 12px;
+}
+
+.notification-item strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 17px;
+}
+
+.notification-item p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.notification-warning {
+    border-left: 5px solid #f97316;
+}
+
+.notification-info {
+    border-left: 5px solid #2563eb;
+}
+
+.qr-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.qr-modal.show {
+    display: flex;
+}
+
+.qr-label-card {
+    position: relative;
+    width: 420px;
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0,0,0,.25);
+}
+
+.qr-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.qr-label-card h2 {
+    margin-top: 0;
+}
+
+.qr-label-card h3 {
+    margin-bottom: 8px;
+    font-size: 22px;
+}
+
+.qr-label-card p {
+    margin: 5px 0;
+    color: #64748b;
+}
+
+.qr-box {
+    margin: 24px auto;
+    padding: 18px;
+    background: #f8fafc;
+    border-radius: 18px;
+}
+
+.qr-box img {
+    width: 220px;
+    height: 220px;
+}
+
+.qr-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.qr-buttons button,
+.qr-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 14px;
+    padding: 0 13px;
+
+    background: #2563eb;
+    color: white;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+
+    cursor: pointer;
+}
+
+/* =========================
+   iOS Glass Theme Toggle
+========================= */
+
+.theme-toggle-area {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.12);
+}
+
+.theme-switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.theme-text {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    transition: .35s ease;
+}
+
+.light-text {
+    color: #f8fafc;
+}
+
+.dark-text {
+    color: #64748b;
+}
+
+body.dark-mode .light-text {
+    color: #475569;
+}
+
+body.dark-mode .dark-text {
+    color: #f8fafc;
+}
+
+.ios-theme-switch input {
+    display: none;
+}
+
+.ios-track {
+    position: relative;
+    display: block;
+    width: 82px;
+    height: 40px;
+    border-radius: 999px;
+    overflow: hidden;
+    cursor: pointer;
+    background: linear-gradient(180deg, #8bbcff 0%, #5b8df7 100%);
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.55),
+        inset 0 -5px 10px rgba(0,0,0,.18),
+        0 8px 18px rgba(0,0,0,.28);
+    transition: .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.ios-track::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 25% 20%, rgba(255,255,255,.55), transparent 28%);
+    opacity: .9;
+    transition: .45s;
+}
+
+.ios-knob {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.32),
+        inset 0 2px 3px rgba(255,255,255,.85);
+    transition: .45s cubic-bezier(.2,.8,.2,1);
+    z-index: 3;
+}
+
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    font-size: 15px;
+    transition: .35s ease;
+}
+
+.sun-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.moon-icon {
+    opacity: 0;
+    transform: scale(.4) rotate(-35deg);
+}
+
+/* clouds */
+.ios-cloud {
+    position: absolute;
+    bottom: -4px;
+    width: 28px;
+    height: 14px;
+    background: rgba(255,255,255,.88);
+    border-radius: 999px;
+    transition: .45s ease;
+}
+
+.ios-cloud::before,
+.ios-cloud::after {
+    content: "";
+    position: absolute;
+    background: rgba(255,255,255,.9);
+    border-radius: 50%;
+}
+
+.ios-cloud::before {
+    width: 14px;
+    height: 14px;
+    left: 5px;
+    top: -7px;
+}
+
+.ios-cloud::after {
+    width: 18px;
+    height: 18px;
+    right: 2px;
+    top: -10px;
+}
+
+.cloud-a {
+    right: 7px;
+}
+
+.cloud-b {
+    right: 28px;
+    transform: scale(.75);
+    opacity: .75;
+}
+
+/* stars */
+.ios-stars i {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 8px rgba(255,255,255,.9);
+    transition: .45s ease;
+}
+
+.ios-stars i:nth-child(1) {
+    top: 9px;
+    left: 18px;
+}
+
+.ios-stars i:nth-child(2) {
+    top: 22px;
+    left: 28px;
+    width: 3px;
+    height: 3px;
+}
+
+.ios-stars i:nth-child(3) {
+    top: 13px;
+    left: 42px;
+    width: 5px;
+    height: 5px;
+}
+
+/* checked = dark */
+.ios-theme-switch input:checked + .ios-track {
+    background: linear-gradient(180deg, #111827 0%, #020617 100%);
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.08),
+        inset 0 -5px 10px rgba(0,0,0,.55),
+        0 8px 18px rgba(0,0,0,.35);
+}
+
+.ios-theme-switch input:checked + .ios-track::before {
+    opacity: .25;
+}
+
+.ios-theme-switch input:checked + .ios-track .ios-knob {
+    left: 47px;
+    background: #e5e7eb;
+}
+
+.ios-theme-switch input:checked + .ios-track .sun-icon {
+    opacity: 0;
+    transform: scale(.4) rotate(35deg);
+}
+
+.ios-theme-switch input:checked + .ios-track .moon-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.ios-theme-switch input:checked + .ios-track .ios-cloud {
+    transform: translateY(22px);
+    opacity: 0;
+}
+
+.ios-theme-switch input:checked + .ios-track .ios-stars i {
+    opacity: 1;
+}
