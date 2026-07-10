@@ -53,6 +53,7 @@ Git Repository 구성 → .gitlab-ci.yml 작성 → Pipeline Stage 구성 → Bu
 # 기술 스택
 
 <img width="1536" height="1024" alt="ChatGPT Image 2026년 6월 30일 오전 11_37_50" src="https://github.com/user-attachments/assets/de9642fa-0ad4-47f3-bbfc-8a6232e6169e" />
+<img width="1024" height="682" alt="image" src="https://github.com/user-attachments/assets/0e8dbef7-d44c-4193-9efe-d5ef8b01b818" />
 
 
 # 네트워크 구성 (Logical Architecture)
